@@ -15,7 +15,15 @@ public class PlayerManager : MonoBehaviour
 
     public void AssignTurn(int currentPlayerTurn)
     {
-        Player player = players.Find(x => x.id == currentPlayerTurn);
-        player.myTurn = true;
+        foreach (Player player in players)
+        {
+            player.myTurn = player.id == currentPlayerTurn;
+        }
+    }
+
+    public Player FindPlayerById(int id)
+    {
+        Player player = players.Find(x => x.id == id);
+        return player;
     }
 }
