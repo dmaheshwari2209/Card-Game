@@ -1,17 +1,30 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static TurnManager instance;
+    public int currentPlayerTurn;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
+    public void StartTurnGameplay(int playerId)
+    {
+        currentPlayerTurn = playerId;
+        PlayerManager.instance.AssignTurn(currentPlayerTurn);
+    }
+
+    public void StartTurn()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void EndTurn()
     {
         
     }

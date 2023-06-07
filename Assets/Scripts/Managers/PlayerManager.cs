@@ -1,18 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static PlayerManager instance;
+    public List<Player> players = new List<Player>();
+
+    private void Awake()
     {
-        
+        instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AssignTurn(int currentPlayerTurn)
     {
-        
+        Player player = players.Find(x => x.id == currentPlayerTurn);
+        player.myTurn = true;
     }
 }
