@@ -13,6 +13,26 @@ public class PlayerManager : MonoBehaviour
         instance = this;
     }
 
+    private void Start()
+    {
+        UIManager.instance.UpdateValues(players[0], players[1]);
+    }
+
+    private void DamagePlayer(int id, int damage)
+    {
+        Player player = FindPlayerById(id);
+        player.health -= damage;
+        if (player.health <= 0)
+        {
+            PlayerLost(id);
+        }
+    }
+
+    private void PlayerLost(int id)
+    {
+        UIManager.instance.GameFinished(id==0 ? FindPlayerById(1) : FindPlayerById(0));
+    }
+
     public void AssignTurn(int currentPlayerTurn)
     {
         foreach (Player player in players)

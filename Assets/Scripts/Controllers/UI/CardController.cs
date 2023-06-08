@@ -51,7 +51,7 @@ public class CardController : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log(eventData.pointerEnter);
+        if (originalParent.name == $"Player{card.ownerId + 1}PlayArea")return;
         image.raycastTarget = true;
         AnalyzePointerUp(eventData);
     }
